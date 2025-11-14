@@ -31,7 +31,17 @@ public class UsuarioUseCaseImpl implements UsuarioUseCase {
 
     @Override
     public void atualizarUsuario(Integer id, Usuario usuario) {
-        usuarioRepository.atualizarUsuario(id, usuario);
+        boolean cpfExiste = false;
+        for (int i = 0; i < listarUsuario().size(); i++) {
+            Usuario u = listarUsuario().get(i);
+            if (usuario.getCpf().equals(u.getCpf())) {
+                cpfExiste = true;
+            }
+        }
+
+        if (cpfExiste==false) {
+            usuarioRepository.atualizarUsuario(id, usuario);
+        }
     }
 
     @Override
