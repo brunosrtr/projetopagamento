@@ -1,7 +1,6 @@
 package com.cesurg.projetopagamento.infra.repository;
 
 import com.cesurg.projetopagamento.core.domain.model.Conta;
-import com.cesurg.projetopagamento.core.domain.model.Usuario;
 import com.cesurg.projetopagamento.core.interfaces.ContaRepository;
 import org.springframework.stereotype.Repository;
 
