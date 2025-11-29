@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ContaRepository {
     void criarConta (Conta conta);
-    void atualizarSaldo (String id, Integer saldo);
+    void atualizarSaldo (String id, double saldo);
     void deletarConta (String id);
     List<Conta> listarConta ();
 }

@@ -19,7 +19,7 @@ public class ContaUseCaseImpl implements ContaUseCase {
     }
 
     @Override
-    public void atualizarSaldo(String id, Integer saldo) {
+    public void atualizarSaldo(String id, double saldo) {
         contaRepository.atualizarSaldo(id, saldo);
     }
 

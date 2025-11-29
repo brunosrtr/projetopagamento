@@ -2,17 +2,41 @@ package com.cesurg.projetopagamento.core.domain.model;
 
 public class Conta {
 
-    private Integer id_usuario;
+    private Long id;
+    private Usuario usuario;
     private Integer agencia;
-    private Integer saldo;
+    private double saldo;
     private String identificador;
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public void depositar(double valor) {
+        if (valor <= 0) throw new IllegalArgumentException("Valor inválido");
+        this.saldo += valor;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void sacar(double valor) {
+        if (valor <= 0) {
+            throw new IllegalArgumentException("Valor inválido");
+        } else if (valor > saldo) {
+            throw new IllegalArgumentException("Saldo insuficiente");
+        } else {
+            this.saldo -= valor;
+        }
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Integer getAgencia() {
@@ -23,11 +47,11 @@ public class Conta {
         this.agencia = agencia;
     }
 
-    public Integer getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Integer saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

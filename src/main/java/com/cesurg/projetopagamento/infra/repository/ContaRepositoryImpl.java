@@ -19,7 +19,7 @@ public class ContaRepositoryImpl implements ContaRepository {
     }
 
     @Override
-    public void atualizarSaldo(String id, Integer saldo) {
+    public void atualizarSaldo(String id, double saldo) {
         for (int i = 0; i < contas.size(); i++) {
             Conta c = contas.get(i);
             if (Objects.equals(c.getIdentificador(), id)) {
