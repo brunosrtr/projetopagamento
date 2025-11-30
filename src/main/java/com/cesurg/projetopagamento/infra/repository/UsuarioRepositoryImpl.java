@@ -29,6 +29,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
                 usuarios.set(i, usuario);
             }
         }
+        throw new IllegalArgumentException("Usuário não encontrado: " + id);
     }
 
     @Override
@@ -39,10 +40,22 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
                 usuarios.remove(i);
             }
         }
+        throw new IllegalArgumentException("Usuário não encontrado: " + id);
     }
 
     @Override
     public List<Usuario> listarUsuario() {
         return usuarios;
     }
+
+    @Override
+    public Usuario buscarPorId(int id) {
+        for (Usuario u : usuarios){
+            if(Objects.equals(u.getId(), id));
+            return u;
+        }
+        return null;
+    }
+
+
 }

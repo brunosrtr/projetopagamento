@@ -9,4 +9,6 @@ public interface UsuarioUseCase {
     void atualizarUsuario (Integer id, Usuario usuario);
     void deletarUsuario (Integer id);
     List<Usuario> listarUsuario ();
+
+    Usuario buscarPorId(int id);
 }

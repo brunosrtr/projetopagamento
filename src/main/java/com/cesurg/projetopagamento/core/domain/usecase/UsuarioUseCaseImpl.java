@@ -53,4 +53,7 @@ public class UsuarioUseCaseImpl implements UsuarioUseCase {
     public List<Usuario> listarUsuario() {
         return usuarioRepository.listarUsuario();
     }
+
+    @Override
+    public Usuario buscarPorId(int id) { return usuarioRepository.buscarPorId(id); }
 }
