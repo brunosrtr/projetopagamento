@@ -10,4 +10,7 @@ public interface ContaRepository {
     void atualizarSaldo (String id, double saldo);
     void deletarConta (String id);
     List<Conta> listarConta ();
+
+    void transferir(String idOrigem, String idDestino, double valor);
+    Conta buscarPorIdentificador(String identificador);
 }

@@ -43,4 +43,43 @@ public class ContaRepositoryImpl implements ContaRepository {
     public List<Conta> listarConta() {
         return contas;
     }
+
+    @Override
+    public void transferir(String idOrigem, String idDestino, double valor) {
+        Conta contaOrigem = null;
+        Conta contaDestino = null;
+
+        for(Conta c : contas){
+            if(Objects.equals(c.getIdentificador(), idDestino)){
+                contaOrigem = c;
+            }
+            if(Objects.equals(c.getIdentificador(), idOrigem)){
+                contaDestino = c;
+            }
+            if(contaOrigem != null && contaDestino != null){
+                break;
+            }
+        }
+
+        if (contaOrigem == null) {
+            throw new IllegalArgumentException("Conta de origem não encontrada");
+        }
+        if (contaDestino == null) {
+            throw new IllegalArgumentException("Conta de destino não encontrada");
+        }
+        if (contaOrigem.getSaldo() < valor) {
+            throw new IllegalArgumentException("Saldo insuficiente");
+        }
+        if (valor <= 0) {
+            throw new IllegalArgumentException("Valor deve ser positivo");
+        }
+
+        contaOrigem.setSaldo(contaOrigem.getSaldo() - valor);
+        contaDestino.setSaldo(contaDestino.getSaldo() + valor);
+    }
+
+    @Override
+    public Conta buscarPorIdentificador(String identificador) {
+        return null;
+    }
 }
