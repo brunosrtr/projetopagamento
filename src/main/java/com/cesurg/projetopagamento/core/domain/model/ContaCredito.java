@@ -23,6 +23,6 @@ public class ContaCredito extends Conta{
     }
 
     public void setLimite(Integer limite) {
-        this.limiteCredito = limiteCredito;
+        this.limiteCredito = limite;
     }
 }

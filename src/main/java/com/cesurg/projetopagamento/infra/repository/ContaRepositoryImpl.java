@@ -1,6 +1,7 @@
 package com.cesurg.projetopagamento.infra.repository;
 
 import com.cesurg.projetopagamento.core.domain.model.Conta;
+import com.cesurg.projetopagamento.core.domain.model.ContaCredito;
 import com.cesurg.projetopagamento.core.domain.model.Usuario;
 import com.cesurg.projetopagamento.core.interfaces.ContaRepository;
 import org.springframework.stereotype.Repository;
@@ -104,4 +105,17 @@ public class ContaRepositoryImpl implements ContaRepository {
         Conta conta = buscarPorIdentificador(identificador);
         conta.sacar(valor);
     }
+
+    @Override
+    public void registrarCompra(String identificador, Double valor) {
+        Conta conta = buscarPorIdentificador(identificador);
+
+        if(conta instanceof ContaCredito){
+            throw new IllegalArgumentException("Apenas contas de crédito podem registrar compras");
+        }
+
+        ContaCredito contaCredito = (ContaCredito) conta;
+        contaCredito.registrarCompra(valor);
+    }
+
 }

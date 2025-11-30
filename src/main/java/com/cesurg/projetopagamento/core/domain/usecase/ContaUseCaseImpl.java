@@ -52,4 +52,10 @@ public class ContaUseCaseImpl implements ContaUseCase {
     public void sacar(String identificador, Double valor) {
         contaRepository.sacar(identificador, valor);
     }
+
+    @Override
+    public void registrarCompra(String identificador, Double valor) {
+        contaRepository.registrarCompra(identificador, valor);
+    }
+
 }
