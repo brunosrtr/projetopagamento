@@ -1,6 +1,7 @@
 package com.cesurg.projetopagamento.infra.repository;
 
 import com.cesurg.projetopagamento.core.domain.model.Conta;
+import com.cesurg.projetopagamento.core.domain.model.Usuario;
 import com.cesurg.projetopagamento.core.interfaces.ContaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,7 @@ public class ContaRepositoryImpl implements ContaRepository {
     @Override
     public void criarConta(Conta conta) {
         contas.add(conta);
-        conta.setIdentificador(conta.getId_usuario().toString() + "-" + conta.getAgencia().toString());
+        conta.setIdentificador(conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
     }
 
     @Override
