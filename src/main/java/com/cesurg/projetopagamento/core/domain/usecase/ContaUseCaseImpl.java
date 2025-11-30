@@ -19,7 +19,7 @@ public class ContaUseCaseImpl implements ContaUseCase {
     }
 
     @Override
-    public void atualizarSaldo(String id, double saldo) {
+    public void atualizarSaldo(String id, Double saldo) {
         contaRepository.atualizarSaldo(id, saldo);
     }
 
@@ -31,5 +31,25 @@ public class ContaUseCaseImpl implements ContaUseCase {
     @Override
     public List<Conta> listarConta() {
         return contaRepository.listarConta();
+    }
+
+    @Override
+    public void transferir(String idOrigem, String idDestino, Double valor) {
+        contaRepository.transferir(idOrigem, idDestino, valor);
+    }
+
+    @Override
+    public Conta buscarPorIdentificador(String identificador) {
+        return contaRepository.buscarPorIdentificador(identificador);
+    }
+
+    @Override
+    public void depositar(String identificador, Double valor) {
+        contaRepository.depositar(identificador, valor);
+    }
+
+    @Override
+    public void sacar(String identificador, Double valor) {
+        contaRepository.sacar(identificador, valor);
     }
 }

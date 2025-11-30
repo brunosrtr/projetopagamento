@@ -20,7 +20,7 @@ public class ContaRepositoryImpl implements ContaRepository {
     }
 
     @Override
-    public void atualizarSaldo(String id, double saldo) {
+    public void atualizarSaldo(String id, Double saldo) {
         for (int i = 0; i < contas.size(); i++) {
             Conta c = contas.get(i);
             if (Objects.equals(c.getIdentificador(), id)) {
@@ -45,7 +45,7 @@ public class ContaRepositoryImpl implements ContaRepository {
     }
 
     @Override
-    public void transferir(String idOrigem, String idDestino, double valor) {
+    public void transferir(String idOrigem, String idDestino, Double valor) {
         Conta contaOrigem = null;
         Conta contaDestino = null;
 
@@ -80,6 +80,28 @@ public class ContaRepositoryImpl implements ContaRepository {
 
     @Override
     public Conta buscarPorIdentificador(String identificador) {
-        return null;
+        Conta contaAlvo = null;
+        for(Conta c : contas){
+            if(Objects.equals(c.getIdentificador(), identificador)){
+                contaAlvo =c;
+                break;
+            }
+        }
+        if(contaAlvo == null){
+            throw new IllegalArgumentException("Conta não encontrada: " + identificador);
+        }
+        return contaAlvo;
+    }
+
+    @Override
+    public void depositar(String identificador, Double valor) {
+        Conta conta = buscarPorIdentificador(identificador);
+        conta.depositar(valor);
+    }
+
+    @Override
+    public void sacar(String identificador, Double valor) {
+        Conta conta = buscarPorIdentificador(identificador);
+        conta.sacar(valor);
     }
 }

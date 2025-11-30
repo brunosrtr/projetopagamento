@@ -1,4 +1,4 @@
-package com.cesurg.projetopagamento.infra.transferenciaDTO;
+package com.cesurg.projetopagamento.infra.DTO;
 
 public class TransferenciaDTO {
 

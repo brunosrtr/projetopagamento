@@ -5,7 +5,7 @@ public class Conta {
     private Long id;
     private Usuario usuario;
     private Integer agencia;
-    private double saldo;
+    private Double saldo;
     private String identificador;
 
     public void depositar(double valor) {
@@ -51,7 +51,7 @@ public class Conta {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 
