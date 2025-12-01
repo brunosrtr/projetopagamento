@@ -1,6 +1,7 @@
 package com.cesurg.projetopagamento.infra.repository;
 
 import com.cesurg.projetopagamento.core.domain.model.Banco;
+import com.cesurg.projetopagamento.core.domain.model.Usuario;
 import com.cesurg.projetopagamento.core.interfaces.BancoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,10 +12,13 @@ import java.util.Objects;
 @Repository
 public class BancoRepositoryImpl implements BancoRepository {
     List<Banco> bancos = new ArrayList<>();
+    Long contador = 1L;
 
     @Override
     public void criarBanco(Banco banco) {
-       bancos.add(banco);
+        banco.setId(contador);
+        bancos.add(banco);
+        contador++;
     }
 
     @Override
@@ -42,4 +46,16 @@ public class BancoRepositoryImpl implements BancoRepository {
     public List<Banco> listarBanco() {
         return bancos;
     }
+
+    @Override
+    public Banco buscarPorId(Long id) {
+        for (Banco b : bancos){
+            if(Objects.equals(b.getId(), id)) {
+                return b;
+            }
+        }
+        return null;
+    }
+
 }
+

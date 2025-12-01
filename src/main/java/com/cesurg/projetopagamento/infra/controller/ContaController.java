@@ -1,6 +1,7 @@
 package com.cesurg.projetopagamento.infra.controller;
 
 import com.cesurg.projetopagamento.core.domain.model.*;
+import com.cesurg.projetopagamento.core.interfaces.BancoUseCase;
 import com.cesurg.projetopagamento.core.interfaces.ContaUseCase;
 import com.cesurg.projetopagamento.core.interfaces.UsuarioRepository;
 import com.cesurg.projetopagamento.core.interfaces.UsuarioUseCase;
@@ -19,14 +20,26 @@ public class ContaController {
     @Autowired
     UsuarioUseCase usuarioUseCase;
 
+    @Autowired
+    BancoUseCase bancoUseCase;
+
     @PostMapping("/corrente")
     void criarContaCorrente(@RequestBody ContaCorrenteDTO dto) {
 
         Usuario usuario = usuarioUseCase.buscarPorId(dto.getUsuarioId());
+        Banco banco = bancoUseCase.buscarPorId(dto.getBancoId());
         ContaCorrente conta = new ContaCorrente();
 
+        if (usuario == null) {
+            throw new IllegalArgumentException("Usuário com ID " + dto.getUsuarioId() + " não encontrado");
+        }
+
+        if (banco == null) {
+            throw new IllegalArgumentException("Banco com ID " + dto.getBancoId() + " não encontrado");
+        }
+
         conta.setUsuario(usuario);
-        conta.setAgencia(dto.getAgencia());
+        conta.setBanco(banco);
         conta.setSaldo(dto.getSaldo());
 
         contaUseCase.criarConta(conta);
@@ -36,10 +49,19 @@ public class ContaController {
     void criarContaPoupanca(@RequestBody ContaPoupancaDTO dto){
 
         Usuario usuario = usuarioUseCase.buscarPorId(dto.getUsuarioId());
+        Banco banco = bancoUseCase.buscarPorId(dto.getBancoId());
         ContaPoupanca conta = new ContaPoupanca();
 
+        if (usuario == null) {
+            throw new IllegalArgumentException("Usuário com ID " + dto.getUsuarioId() + " não encontrado");
+        }
+
+        if (banco == null) {
+            throw new IllegalArgumentException("Banco com ID " + dto.getBancoId() + " não encontrado");
+        }
+
         conta.setUsuario(usuario);
-        conta.setAgencia(dto.getAgencia());
+        conta.setBanco(banco);
         conta.setSaldo(dto.getSaldo());
         conta.setTaxaRendimento(dto.getTaxaRendimento());
 
@@ -50,10 +72,19 @@ public class ContaController {
     void criarContaCredito(@RequestBody ContaCreditoDTO dto){
 
         Usuario usuario = usuarioUseCase.buscarPorId(dto.getUsuarioId());
+        Banco banco = bancoUseCase.buscarPorId(dto.getBancoId());
         ContaCredito conta = new ContaCredito();
 
+        if (usuario == null) {
+            throw new IllegalArgumentException("Usuário com ID " + dto.getUsuarioId() + " não encontrado");
+        }
+
+        if (banco == null) {
+            throw new IllegalArgumentException("Banco com ID " + dto.getBancoId() + " não encontrado");
+        }
+
         conta.setUsuario(usuario);
-        conta.setAgencia(dto.getAgencia());
+        conta.setBanco(banco);
         conta.setLimite(dto.getLimite());
         conta.setSaldo(0.0);
 

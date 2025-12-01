@@ -49,4 +49,9 @@ public class BancoUseCaseImpl implements BancoUseCase {
     public List<Banco> listarBanco() {
         return bancoRepository.listarBanco();
     }
+
+    @Override
+    public Banco buscarPorId(Long id) {
+        return bancoRepository.buscarPorId(id);
+    }
 }

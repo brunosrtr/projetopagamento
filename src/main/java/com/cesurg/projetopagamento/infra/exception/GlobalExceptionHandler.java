@@ -12,19 +12,19 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<?> handleIllegalArgument(IllegalArgumentException e) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("erro", e.getMessage());
-        body.put("timestamp", LocalDateTime.now());
-        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
-    }
+    //@ExceptionHandler(IllegalArgumentException.class)
+    //public ResponseEntity<?> handleIllegalArgument(IllegalArgumentException e) {
+    //    Map<String, Object> body = new HashMap<>();
+    //  body.put("erro", e.getMessage());
+    //  body.put("timestamp", LocalDateTime.now());
+    //  return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    //}
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<?> handleGeneric(Exception e) {
-        Map<String, Object> body = new HashMap<>();
-        body.put("erro", "Erro interno no servidor");
-        body.put("timestamp", LocalDateTime.now());
-        return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+    // @ExceptionHandler(Exception.class)
+    //public ResponseEntity<?> handleGeneric(Exception e) {
+    //  Map<String, Object> body = new HashMap<>();
+    //  body.put("erro", "Erro interno no servidor");
+    //  body.put("timestamp", LocalDateTime.now());
+    //  return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
+    //}
 }

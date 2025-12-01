@@ -1,18 +1,16 @@
 package com.cesurg.projetopagamento.infra.DTO;
 
-import com.cesurg.projetopagamento.core.domain.model.Usuario;
-
 public class ContaPoupancaDTO {
     private Long usuarioId;
-    private Integer agencia;
+    private Long bancoId;
     private Double saldo;
     private Double taxaRendimento;
 
     public ContaPoupancaDTO() {}
 
-    public ContaPoupancaDTO(Long usuarioId, Integer agencia, Double saldo, Double taxaRendimento) {
+    public ContaPoupancaDTO(Long usuarioId, Long bancoId, Double saldo, Double taxaRendimento) {
         this.usuarioId = usuarioId;
-        this.agencia = agencia;
+        this.bancoId = bancoId;
         this.saldo = saldo;
         this.taxaRendimento = taxaRendimento;
     }
@@ -21,16 +19,16 @@ public class ContaPoupancaDTO {
         return usuarioId;
     }
 
-    public void setUsuario(Long usuarioId) {
+    public void setUsuarioId(Long usuarioId) {
         this.usuarioId = usuarioId;
     }
 
-    public Integer getAgencia() {
-        return agencia;
+    public Long getBancoId() {
+        return bancoId;
     }
 
-    public void setAgencia(Integer agencia) {
-        this.agencia = agencia;
+    public void setBancoId(Long bancoId) {
+        this.bancoId = bancoId;
     }
 
     public Double getSaldo() {

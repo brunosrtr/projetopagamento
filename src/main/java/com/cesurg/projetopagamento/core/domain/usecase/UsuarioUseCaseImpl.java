@@ -32,7 +32,7 @@ public class UsuarioUseCaseImpl implements UsuarioUseCase {
     }
 
     @Override
-    public void atualizarUsuario(Integer id, Usuario usuario) {
+    public void atualizarUsuario(Long id, Usuario usuario) {
         boolean cpfExiste = false;
         for (int i = 0; i < listarUsuario().size(); i++) {
             Usuario u = listarUsuario().get(i);
@@ -47,7 +47,7 @@ public class UsuarioUseCaseImpl implements UsuarioUseCase {
     }
 
     @Override
-    public void deletarUsuario(Integer id) {
+    public void deletarUsuario(Long id) {
         usuarioRepository.deletarUsuario(id);
     }
 

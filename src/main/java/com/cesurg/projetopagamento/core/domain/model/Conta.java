@@ -4,7 +4,7 @@ public class Conta {
 
     private Long id;
     private Usuario usuario;
-    private Integer agencia;
+    private Banco banco;
     private Double saldo;
     private String identificador;
 
@@ -39,12 +39,12 @@ public class Conta {
         this.usuario = usuario;
     }
 
-    public Integer getAgencia() {
-        return agencia;
+    public Banco getBanco() {
+        return banco;
     }
 
-    public void setAgencia(Integer agencia) {
-        this.agencia = agencia;
+    public void setBanco(Banco banco) {
+        this.banco = banco;
     }
 
     public double getSaldo() {

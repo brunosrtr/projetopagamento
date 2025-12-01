@@ -2,10 +2,19 @@ package com.cesurg.projetopagamento.core.domain.model;
 
 public class Banco {
 
+    private Long id;
     private String nome;
     private Integer agencia;
 
     public Banco() {}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;

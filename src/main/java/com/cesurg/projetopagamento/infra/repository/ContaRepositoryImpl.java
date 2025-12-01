@@ -18,11 +18,11 @@ public class ContaRepositoryImpl implements ContaRepository {
         conta.setId(contador);
 
         if (conta instanceof ContaPoupanca) {
-            conta.setIdentificador("CP-" + conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
+            conta.setIdentificador("CP-" + conta.getUsuario().getId().toString() + "-" + conta.getBanco().getAgencia().toString());
         } else if (conta instanceof ContaCredito) {
-            conta.setIdentificador("CR-" + conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
+            conta.setIdentificador("CR-" + conta.getUsuario().getId().toString() + "-" + conta.getBanco().getAgencia().toString());
         } else if (conta instanceof ContaCorrente) {
-            conta.setIdentificador("CC-" + conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
+            conta.setIdentificador("CC-" + conta.getUsuario().getId().toString() + "-" + conta.getBanco().getAgencia().toString());
         }
 
         boolean identificadorExiste = false;

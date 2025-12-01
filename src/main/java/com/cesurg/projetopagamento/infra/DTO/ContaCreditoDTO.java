@@ -4,14 +4,14 @@ import com.cesurg.projetopagamento.core.domain.model.Usuario;
 
 public class ContaCreditoDTO {
     private Long usuarioId;
-    private Integer agencia;
+    private Long bancoId;
     private Integer limite;
 
     public ContaCreditoDTO() {}
 
-    public ContaCreditoDTO(Long usuarioId, Integer agencia, Integer limite) {
+    public ContaCreditoDTO(Long usuarioId, Long bancoId, Integer limite) {
         this.usuarioId = usuarioId;
-        this.agencia = agencia;
+        this.bancoId = bancoId;
         this.limite = limite;
     }
 
@@ -19,16 +19,16 @@ public class ContaCreditoDTO {
         return usuarioId;
     }
 
-    public void setUsuario(Long usuarioId) {
+    public void setUsuarioId(Long usuarioId) {
         this.usuarioId = usuarioId;
     }
 
-    public Integer getAgencia() {
-        return agencia;
+    public Long getBancoId() {
+        return bancoId;
     }
 
-    public void setAgencia(Integer agencia) {
-        this.agencia = agencia;
+    public void setBancoId(Long bancoId) {
+        this.bancoId = bancoId;
     }
 
     public Integer getLimite() {

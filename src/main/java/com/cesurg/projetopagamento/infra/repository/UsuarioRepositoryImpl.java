@@ -11,7 +11,7 @@ import java.util.Objects;
 @Repository
 public class UsuarioRepositoryImpl implements UsuarioRepository {
     List<Usuario> usuarios = new ArrayList<>();
-    int contador = 1;
+    Long contador = 1L;
 
     @Override
     public void criarUsuario(Usuario usuario) {
@@ -21,7 +21,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public void atualizarUsuario(Integer id, Usuario usuario) {
+    public void atualizarUsuario(Long id, Usuario usuario) {
         for (int i = 0; i < usuarios.size(); i++) {
             Usuario u = usuarios.get(i);
             if (Objects.equals(u.getId(), id)) {
@@ -33,7 +33,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public void deletarUsuario(Integer id) {
+    public void deletarUsuario(Long id) {
         for (int i = 0; i < usuarios.size(); i++) {
             Usuario u = usuarios.get(i);
             if (Objects.equals(u.getId(), id)) {
@@ -51,8 +51,9 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     @Override
     public Usuario buscarPorId(Long id) {
         for (Usuario u : usuarios){
-            if(Objects.equals(u.getId(), id));
-            return u;
+            if(Objects.equals(u.getId(), id)) {
+                return u;
+            }
         }
         return null;
     }

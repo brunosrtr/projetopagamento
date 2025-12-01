@@ -4,7 +4,7 @@ public class Usuario {
 
     int contador = 1;
 
-    private Integer id;
+    private Long id;
     private String nome;
     private String sobrenome;
     private String cpf;
@@ -15,16 +15,12 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public Usuario() {
-        this.id = contador;
-        contador++;
-    }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

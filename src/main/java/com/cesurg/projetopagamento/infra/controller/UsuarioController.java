@@ -20,12 +20,12 @@ public class UsuarioController {
     }
 
     @PutMapping("/{id}")
-    void atualizarUsuario(@PathVariable Integer id, @RequestBody Usuario usuario) {
+    void atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         usuarioUseCase.atualizarUsuario(id, usuario);
     }
 
     @DeleteMapping("/{id}")
-    void deletarUsuario(@PathVariable Integer id) {
+    void deletarUsuario(@PathVariable Long id) {
         usuarioUseCase.deletarUsuario(id);
     }
 
