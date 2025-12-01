@@ -17,4 +17,6 @@ public interface ContaUseCase {
     void sacar(String identificador, Double valor);
 
     void registrarCompra(String identificador, Double valor);
+
+    void aplicarRendimento();
 }

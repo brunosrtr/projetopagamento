@@ -58,4 +58,9 @@ public class ContaUseCaseImpl implements ContaUseCase {
         contaRepository.registrarCompra(identificador, valor);
     }
 
+    @Override
+    public void aplicarRendimento() {
+        contaRepository.aplicarRendimento();
+    }
+
 }

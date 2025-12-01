@@ -18,4 +18,5 @@ public interface ContaRepository {
 
     void registrarCompra(String identificador, Double valor);
 
+    void aplicarRendimento();
 }

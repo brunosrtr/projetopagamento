@@ -103,4 +103,9 @@ public class ContaController {
         contaUseCase.registrarCompra(identificdor, valor);
     }
 
+    @PostMapping("/rendimento")
+    void aplicarRendimento() {
+        contaUseCase.aplicarRendimento();
+    }
+
 }

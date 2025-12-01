@@ -1,8 +1,6 @@
 package com.cesurg.projetopagamento.infra.repository;
 
-import com.cesurg.projetopagamento.core.domain.model.Conta;
-import com.cesurg.projetopagamento.core.domain.model.ContaCredito;
-import com.cesurg.projetopagamento.core.domain.model.Usuario;
+import com.cesurg.projetopagamento.core.domain.model.*;
 import com.cesurg.projetopagamento.core.interfaces.ContaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,8 +14,15 @@ public class ContaRepositoryImpl implements ContaRepository {
 
     @Override
     public void criarConta(Conta conta) {
+        if (conta instanceof ContaPoupanca) {
+            conta.setIdentificador("CP-" + conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
+        } else if (conta instanceof ContaCredito) {
+            conta.setIdentificador("CR-" + conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
+        } else if (conta instanceof ContaCorrente) {
+            conta.setIdentificador("CC-" + conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
+        }
+
         contas.add(conta);
-        conta.setIdentificador(conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
     }
 
     @Override
@@ -116,6 +121,19 @@ public class ContaRepositoryImpl implements ContaRepository {
 
         ContaCredito contaCredito = (ContaCredito) conta;
         contaCredito.registrarCompra(valor);
+    }
+
+    @Override
+    public void aplicarRendimento() {
+        for (int i = 0; i < contas.size(); i++) {
+            Conta conta = contas.get(i);
+
+            if (conta instanceof ContaPoupanca) {
+                ContaPoupanca poupanca = (ContaPoupanca) conta;
+                poupanca.aplicarRendimento();
+            }
+        }
+
     }
 
 
