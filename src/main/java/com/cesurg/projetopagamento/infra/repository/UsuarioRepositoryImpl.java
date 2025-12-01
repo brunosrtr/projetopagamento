@@ -49,7 +49,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public Usuario buscarPorId(int id) {
+    public Usuario buscarPorId(Long id) {
         for (Usuario u : usuarios){
             if(Objects.equals(u.getId(), id));
             return u;

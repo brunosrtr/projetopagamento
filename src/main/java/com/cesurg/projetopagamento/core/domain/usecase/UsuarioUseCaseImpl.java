@@ -55,5 +55,5 @@ public class UsuarioUseCaseImpl implements UsuarioUseCase {
     }
 
     @Override
-    public Usuario buscarPorId(int id) { return usuarioRepository.buscarPorId(id); }
+    public Usuario buscarPorId(Long id) { return usuarioRepository.buscarPorId(id); }
 }

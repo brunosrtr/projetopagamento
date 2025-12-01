@@ -1,10 +1,9 @@
 package com.cesurg.projetopagamento.infra.controller;
 
-import com.cesurg.projetopagamento.core.domain.model.Conta;
-import com.cesurg.projetopagamento.core.domain.model.ContaCorrente;
-import com.cesurg.projetopagamento.core.domain.model.ContaCredito;
-import com.cesurg.projetopagamento.core.domain.model.ContaPoupanca;
+import com.cesurg.projetopagamento.core.domain.model.*;
 import com.cesurg.projetopagamento.core.interfaces.ContaUseCase;
+import com.cesurg.projetopagamento.core.interfaces.UsuarioRepository;
+import com.cesurg.projetopagamento.core.interfaces.UsuarioUseCase;
 import com.cesurg.projetopagamento.infra.DTO.ContaCorrenteDTO;
 import com.cesurg.projetopagamento.infra.DTO.ContaCreditoDTO;
 import com.cesurg.projetopagamento.infra.DTO.ContaPoupancaDTO;
@@ -20,21 +19,47 @@ public class ContaController {
     @Autowired
     ContaUseCase contaUseCase;
 
+    @Autowired
+    UsuarioUseCase usuarioUseCase;
+
     @PostMapping("/corrente")
     void criarContaCorrente(@RequestBody ContaCorrenteDTO dto) {
+
+        Usuario usuario = usuarioUseCase.buscarPorId(dto.getUsuarioId());
         ContaCorrente conta = new ContaCorrente();
+
+        conta.setUsuario(usuario);
+        conta.setAgencia(dto.getAgencia());
+        conta.setSaldo(dto.getSaldo());
+
         contaUseCase.criarConta(conta);
     }
 
     @PostMapping("/poupanca")
     void criarContaPoupanca(@RequestBody ContaPoupancaDTO dto){
+
+        Usuario usuario = usuarioUseCase.buscarPorId(dto.getUsuarioId());
         ContaPoupanca conta = new ContaPoupanca();
+
+        conta.setUsuario(usuario);
+        conta.setAgencia(dto.getAgencia());
+        conta.setSaldo(dto.getSaldo());
+        conta.setTaxaRendimento(dto.getTaxaRendimento());
+
         contaUseCase.criarConta(conta);
     }
 
     @PostMapping("/credito")
     void criarContaCredito(@RequestBody ContaCreditoDTO dto){
+
+        Usuario usuario = usuarioUseCase.buscarPorId(dto.getUsuarioId());
         ContaCredito conta = new ContaCredito();
+
+        conta.setUsuario(usuario);
+        conta.setAgencia(dto.getAgencia());
+        conta.setLimite(dto.getLimite());
+        conta.setSaldo(0.0);
+
         contaUseCase.criarConta(conta);
     }
 

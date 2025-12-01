@@ -10,5 +10,5 @@ public interface UsuarioRepository {
     void deletarUsuario (Integer id);
     List<Usuario> listarUsuario ();
 
-    Usuario buscarPorId(int id);
+    Usuario buscarPorId(Long id);
 }

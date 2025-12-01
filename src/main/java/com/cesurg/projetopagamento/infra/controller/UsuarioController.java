@@ -35,6 +35,6 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    Usuario buscarPorId(@PathVariable int id){ return  usuarioUseCase.buscarPorId(id); }
+    Usuario buscarPorId(@PathVariable Long id){ return  usuarioUseCase.buscarPorId(id); }
 
 }
