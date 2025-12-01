@@ -24,7 +24,9 @@ public class UsuarioUseCaseImpl implements UsuarioUseCase {
             }
         }
 
-        if (cpfExiste==false) {
+        if (cpfExiste) {
+            throw new IllegalArgumentException("Este identificador já existe");
+        } else {
             usuarioRepository.criarUsuario(usuario);
         }
     }

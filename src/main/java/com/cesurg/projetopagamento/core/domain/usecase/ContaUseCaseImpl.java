@@ -1,5 +1,6 @@
 package com.cesurg.projetopagamento.core.domain.usecase;
 
+import com.cesurg.projetopagamento.core.domain.model.Banco;
 import com.cesurg.projetopagamento.core.domain.model.Conta;
 import com.cesurg.projetopagamento.core.interfaces.ContaRepository;
 import com.cesurg.projetopagamento.core.interfaces.ContaUseCase;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ContaUseCaseImpl implements ContaUseCase {

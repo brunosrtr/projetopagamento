@@ -11,9 +11,12 @@ import java.util.Objects;
 @Repository
 public class ContaRepositoryImpl implements ContaRepository {
     List<Conta> contas = new ArrayList<>();
+    Long contador = 1L;
 
     @Override
     public void criarConta(Conta conta) {
+        conta.setId(contador);
+
         if (conta instanceof ContaPoupanca) {
             conta.setIdentificador("CP-" + conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
         } else if (conta instanceof ContaCredito) {
@@ -22,7 +25,21 @@ public class ContaRepositoryImpl implements ContaRepository {
             conta.setIdentificador("CC-" + conta.getUsuario().getId().toString() + "-" + conta.getAgencia().toString());
         }
 
-        contas.add(conta);
+        boolean identificadorExiste = false;
+
+        for (int i = 0; i < listarConta().size(); i++) {
+            Conta c = listarConta().get(i);
+            if (Objects.equals(c.getIdentificador(), conta.getIdentificador())) {
+                identificadorExiste = true;
+            }
+        }
+
+        if (identificadorExiste) {
+            throw new IllegalArgumentException("Este identificador já existe");
+        } else {
+            contas.add(conta);
+            contador++;
+        }
     }
 
     @Override
@@ -56,10 +73,10 @@ public class ContaRepositoryImpl implements ContaRepository {
         Conta contaDestino = null;
 
         for(Conta c : contas){
-            if(Objects.equals(c.getIdentificador(), idDestino)){
+            if(Objects.equals(c.getIdentificador(), idOrigem)){
                 contaOrigem = c;
             }
-            if(Objects.equals(c.getIdentificador(), idOrigem)){
+            if(Objects.equals(c.getIdentificador(), idDestino)){
                 contaDestino = c;
             }
             if(contaOrigem != null && contaDestino != null){
@@ -116,11 +133,13 @@ public class ContaRepositoryImpl implements ContaRepository {
         Conta conta = buscarPorIdentificador(identificador);
 
         if(conta instanceof ContaCredito){
+            ContaCredito contaCredito = (ContaCredito) conta;
+            contaCredito.registrarCompra(valor);
+        } else {
             throw new IllegalArgumentException("Apenas contas de crédito podem registrar compras");
         }
 
-        ContaCredito contaCredito = (ContaCredito) conta;
-        contaCredito.registrarCompra(valor);
+
     }
 
     @Override

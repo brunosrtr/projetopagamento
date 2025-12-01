@@ -11,13 +11,10 @@ import java.util.Objects;
 @Repository
 public class BancoRepositoryImpl implements BancoRepository {
     List<Banco> bancos = new ArrayList<>();
-    int contador = 1;
 
     @Override
     public void criarBanco(Banco banco) {
-        bancos.add(banco);
-        banco.setAgencia(contador);
-        contador++;
+       bancos.add(banco);
     }
 
     @Override

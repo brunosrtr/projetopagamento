@@ -4,10 +4,7 @@ import com.cesurg.projetopagamento.core.domain.model.*;
 import com.cesurg.projetopagamento.core.interfaces.ContaUseCase;
 import com.cesurg.projetopagamento.core.interfaces.UsuarioRepository;
 import com.cesurg.projetopagamento.core.interfaces.UsuarioUseCase;
-import com.cesurg.projetopagamento.infra.DTO.ContaCorrenteDTO;
-import com.cesurg.projetopagamento.infra.DTO.ContaCreditoDTO;
-import com.cesurg.projetopagamento.infra.DTO.ContaPoupancaDTO;
-import com.cesurg.projetopagamento.infra.DTO.TransferenciaDTO;
+import com.cesurg.projetopagamento.infra.DTO.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,9 +60,9 @@ public class ContaController {
         contaUseCase.criarConta(conta);
     }
 
-    @PutMapping("/{id}")
-    void atualizarConta(@PathVariable String id, @RequestBody double saldo) {
-        contaUseCase.atualizarSaldo(id, saldo);
+    @PutMapping("/atualizar")
+    void atualizarConta(@RequestBody OperacaoDTO dto) {
+        contaUseCase.atualizarSaldo(dto.getIdentificador(), dto.getValor());
     }
 
     @DeleteMapping("/{id}")
@@ -88,19 +85,19 @@ public class ContaController {
         return contaUseCase.buscarPorIdentificador(identificador);
     }
 
-    @PostMapping("/{id}/depositar")
-    void depositar(@PathVariable String identificador, @RequestBody Double valor){
-        contaUseCase.depositar(identificador, valor);
+    @PostMapping("/depositar")
+    void depositar(@RequestBody OperacaoDTO dto){
+        contaUseCase.depositar(dto.getIdentificador(), dto.getValor());
     }
 
-    @PostMapping("/{id}/sacar")
-    void sacar(@PathVariable String identificador, @RequestBody Double valor){
-        contaUseCase.sacar(identificador, valor);
+    @PostMapping("/sacar")
+    void sacar(@RequestBody OperacaoDTO dto){
+        contaUseCase.sacar(dto.getIdentificador(), dto.getValor());
     }
 
-    @PostMapping("/{identificador}/compra")
-    void registrarCompra(@PathVariable String identificdor, @RequestBody Double valor){
-        contaUseCase.registrarCompra(identificdor, valor);
+    @PostMapping("/compra")
+    void registrarCompra(@RequestBody OperacaoDTO dto){
+        contaUseCase.registrarCompra(dto.getIdentificador(), dto.getValor());
     }
 
     @PostMapping("/rendimento")
