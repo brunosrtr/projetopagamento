@@ -22,26 +22,33 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
     @Override
     public void atualizarUsuario(Long id, Usuario usuario) {
+        boolean usuarioEncontrado = false;
         for (int i = 0; i < usuarios.size(); i++) {
             Usuario u = usuarios.get(i);
             if (Objects.equals(u.getId(), id)) {
-                usuario.setId(u.getId());
-                usuarios.set(i, usuario);
+                usuarioEncontrado = true;
+                u.setNome(usuario.getNome());
+                u.setCpf(usuario.getCpf());
             }
         }
-        throw new IllegalArgumentException("Usuário não encontrado: " + id);
+        if (usuarioEncontrado==false) {
+            throw new IllegalArgumentException("Usuário não encontrado: " + id);
+        }
     }
 
     @Override
     public void deletarUsuario(Long id) {
+        boolean usuarioEncontrado = false;
         for (int i = 0; i < usuarios.size(); i++) {
             Usuario u = usuarios.get(i);
             if (Objects.equals(u.getId(), id)) {
+                usuarioEncontrado = true;
                 usuarios.remove(i);
             }
         }
-        throw new IllegalArgumentException("Usuário não encontrado: " + id);
-    }
+        if (usuarioEncontrado==false) {
+            throw new IllegalArgumentException("Usuário não encontrado: " + id);
+        }    }
 
     @Override
     public List<Usuario> listarUsuario() {

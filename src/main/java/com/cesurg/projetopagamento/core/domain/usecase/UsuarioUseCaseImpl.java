@@ -25,26 +25,29 @@ public class UsuarioUseCaseImpl implements UsuarioUseCase {
         }
 
         if (cpfExiste) {
-            throw new IllegalArgumentException("Este identificador já existe");
+            throw new IllegalArgumentException("Este CPF já existe");
         } else {
             usuarioRepository.criarUsuario(usuario);
         }
     }
 
-    @Override
     public void atualizarUsuario(Long id, Usuario usuario) {
         boolean cpfExiste = false;
         for (int i = 0; i < listarUsuario().size(); i++) {
             Usuario u = listarUsuario().get(i);
-            if (usuario.getCpf().equals(u.getCpf())) {
+            if (usuario.getCpf().equals(u.getCpf()) && !u.getId().equals(id)) {
                 cpfExiste = true;
             }
         }
 
-        if (cpfExiste==false) {
+        if (cpfExiste) {
+            throw new IllegalArgumentException("Este CPF já existe");
+        } else {
             usuarioRepository.atualizarUsuario(id, usuario);
         }
+
     }
+
 
     @Override
     public void deletarUsuario(Long id) {
