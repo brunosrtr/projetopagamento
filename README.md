@@ -1,149 +1,210 @@
-💳 Projeto Pagamento – Sistema de Gerenciamento Bancário
+## 💳 Projeto Pagamento – Sistema de Gerenciamento Bancário
 
 Este repositório contém um sistema desenvolvido como projeto da disciplina de Programação Orientada a Objetos, pertencente ao curso de Desenvolvimento de Sistemas.
+
 Criado por Bruno Sartori e Patrick Fedrigo, o sistema implementa uma arquitetura limpa (Clean Architecture), garantindo organização, escalabilidade e separação clara de responsabilidades.
 
-🏛️ Arquitetura do Projeto
-src/main/java/com.cesurg.projetopagamento
-│
-├── core
-│   ├── domain
-│   │   ├── model        # Entidades de domínio (Banco, Conta, Usuario...)
-│   │   └── usecase      # Regras de negócio
-│   ├── interfaces       # Portas de entrada e saída (contratos)
-│
-├── infra
-│   ├── controller       # API REST
-│   ├── DTO              # Objetos de transferência de dados
-│   ├── exception        # Tratamento de erros
-│   └── repository       # Persistência
-│
-└── ProjetopagamentoApplication
+🏛️ **Arquitetura do Projeto**
 
-🔌 Documentação Oficial da API
+```
+src/main/java
+└── com
+    └── cesurg
+        └── projetopagamento
+            ├── ProjetopagamentoApplication.java
+            ├── core
+            │   ├── domain
+            │   │   ├── model
+            │   │   │   ├── Banco.java
+            │   │   │   ├── Conta.java
+            │   │   │   ├── ContaCorrente.java
+            │   │   │   ├── ContaCredito.java
+            │   │   │   ├── ContaPoupanca.java
+            │   │   │   └── Usuario.java
+            │   │   └── usecase
+            │   │       ├── BancoUseCaseImpl.java
+            │   │       ├── ContaUseCaseImpl.java
+            │   │       └── UsuarioUseCaseImpl.java
+            │   └── interfaces
+            │       ├── BancoRepository.java
+            │       ├── BancoUseCase.java
+            │       ├── ContaRepository.java
+            │       ├── ContaUseCase.java
+            │       ├── UsuarioRepository.java
+            │       └── UsuarioUseCase.java
+            └── infra
+                ├── DTO
+                │   ├── ContaCorrenteDTO.java
+                │   ├── ContaCreditoDTO.java
+                │   ├── ContaPoupancaDTO.java
+                │   ├── OperacaoDTO.java
+                │   └── TransferenciaDTO.java
+                ├── controller
+                │   ├── BancoController.java
+                │   ├── ContaController.java
+                │   └── UsuarioController.java
+                ├── exception
+                │   └── GlobalExceptionHandler.java
+                └── repository
+                    ├── BancoRepositoryImpl.java
+                    ├── ContaRepositoryImpl.java
+                    └── UsuarioRepositoryImpl.java
+```
+
+🔌 **Documentação Oficial da API**
 
 A API é dividida em três módulos principais:
 
-Banco
+- Banco  
+- Usuário  
+- Conta bancária (corrente, poupança e crédito)
 
-Usuário
+---
 
-Conta bancária (corrente, poupança e crédito)
+## 🏦 **1. Endpoints de Banco**
 
-Todos os endpoints estão documentados abaixo com seus respectivos caminhos e funções.
+| Método | Rota              | Descrição                     |
+|--------|-------------------|-------------------------------|
+| POST   | /bancos           | Criar um banco                |
+| PUT    | /bancos/{agencia} | Atualizar banco pela agência  |
+| DELETE | /bancos/{agencia} | Remover banco pela agência    |
+| GET    | /bancos           | Listar todos os bancos        |
 
-🏦 1. Endpoints de Banco
-Método	Rota	Descrição
-POST	/bancos	Criar um banco
-PUT	/bancos/{agencia}	Atualizar banco pela agência
-DELETE	/bancos/{agencia}	Remover banco pela agência
-GET	/bancos	Listar todos os bancos
+✔️ **Exemplo de criação de banco (POST)**
 
-✔️ Exemplo de criação de banco (POST)
+```json
 {
   "nome": "Banco do Brasil",
   "agencia": 1234
 }
+```
 
-👤 2. Endpoints de Usuário
-Método	Rota	Descrição
-POST	/usuarios	Criar um usuário
-PUT	/usuarios/{id}	Atualizar usuário
-DELETE	/usuarios/{id}	Remover usuário
-GET	/usuarios	Listar usuários
-GET	/usuarios/{id}	Buscar usuário por ID
+## 👤 **2. Endpoints de Usuário**
 
-✔️ Exemplo de criação de usuário (POST)
+| Método | Rota           | Descrição             |
+| ------ | -------------- | --------------------- |
+| POST   | /usuarios      | Criar um usuário      |
+| PUT    | /usuarios/{id} | Atualizar usuário     |
+| DELETE | /usuarios/{id} | Remover usuário       |
+| GET    | /usuarios      | Listar usuários       |
+| GET    | /usuarios/{id} | Buscar usuário por ID |
+
+✔️ **Exemplo (POST)**
+
+```json
 {
   "nome": "Bruno",
-  "cpf": "12345678900"
+  "sobrenome": "Sartori",
+  "cpf": "10101010101"
 }
+```
 
-💼 3. Endpoints de Conta
+## 💼 **3. Endpoints de Conta**
 
-Módulo responsável por contas corrente, poupança e crédito.
+| Método | Rota             | Tipo de Conta  | Body             |
+| ------ | ---------------- | -------------- | ---------------- |
+| POST   | /contas/corrente | Conta Corrente | ContaCorrenteDTO |
+| POST   | /contas/poupanca | Conta Poupança | ContaPoupancaDTO |
+| POST   | /contas/credito  | Conta Crédito  | ContaCreditoDTO  |
 
-🏦 Criar contas
-Método	Rota	Tipo de Conta	Corpo da Requisição
-POST	/contas/corrente	Conta Corrente	ContaCorrenteDTO
-POST	/contas/poupanca	Conta Poupança	ContaPoupancaDTO
-POST	/contas/credito	Conta Crédito	ContaCreditoDTO
 
 ✔️ Conta Corrente – Exemplo
+```json
 {
   "usuarioId": 1,
   "bancoId": 1,
   "saldo": 1000.00,
   "taxaManutencao": 12.50
 }
+```
 
 ✔️ Conta Poupança – Exemplo
+```json
 {
   "usuarioId": 1,
   "bancoId": 1,
   "saldo": 1500.00,
   "taxaRendimento": 0.02
 }
+```
 
 ✔️ Conta Crédito – Exemplo
+```json
 {
   "usuarioId": 1,
   "bancoId": 1,
   "limite": 5000.00
 }
+```
 
-🔁 Operações financeiras
-Método	Rota	Descrição
-PUT	/contas/atualizar	Atualizar saldo (genérico)
-POST	/contas/depositar	Depositar valor
-POST	/contas/sacar	Sacar valor
-POST	/contas/compra	Registrar compra (conta crédito)
-POST	/contas/transferir	Transferir entre contas
-POST	/contas/rendimento	Aplicar rendimentos nas poupanças
+## 🔁 Operações Financeiras
+
+| Método | Rota               | Descrição                       |
+| ------ | ------------------ | ------------------------------- |
+| PUT    | /contas/atualizar  | Atualizar saldo (genérico)      |
+| POST   | /contas/depositar  | Depositar valor                 |
+| POST   | /contas/sacar      | Sacar valor                     |
+| POST   | /contas/compra     | Registrar compra (crédito)      |
+| POST   | /contas/transferir | Transferir entre contas         |
+| POST   | /contas/rendimento | Aplicar rendimento em poupanças |
 
 ✔️ Exemplo – Depositar
+```json
 {
   "identificador": "CC-1-1234",
   "valor": 500
 }
+```
 
 ✔️ Exemplo – Transferência
+```json
 {
   "idOrigem": "CC-1-1234",
   "idDestino": "CP-1-1234",
   "valor": 1000.00
 }
+```
+## 📚 Consultas e Remoção de Contas
+| Método | Rota                    | Descrição     |
+| ------ | ----------------------- | ------------- |
+| GET    | /contas                 | Listar contas |
+| GET    | /contas/{identificador} | Buscar conta  |
+| DELETE | /contas/{id}            | Deletar conta |
 
-📚 Consultas e remoção de contas
-Método	Rota	Descrição
-GET	/contas	Listar todas as contas
-GET	/contas/{identificador}	Buscar conta por identificador
-DELETE	/contas/{id}	Deletar conta
-
-🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
 Java 17+
+
 Spring Boot
+
 Spring Web
+
 Spring Data JPA
+
 H2 / PostgreSQL / MySQL
+
 Maven
 
-Padrões de arquitetura: Clean Architecture / Ports & Adapters
+Padrões: Clean Architecture / Ports & Adapters
 
-▶️ Executando o Projeto
+## ▶️ Executando o Projeto
+```
 mvn spring-boot:run
+```
 
-API rodará em:
+A API rodará em:
+```
 http://localhost:3000
-
-👨‍💻 Autores
+```
+### 👨‍💻 Autores
 
 Bruno Sartori
+
 Patrick Fedrigo
 
 Curso: Desenvolvimento de Sistemas
 Disciplina: Programação Orientada a Objetos
 
-📄 Licença
+## 📄 Licença
+
 Projeto acadêmico – uso livre para estudo.
