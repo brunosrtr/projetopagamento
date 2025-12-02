@@ -114,7 +114,6 @@ A API é dividida em três módulos principais:
   "usuarioId": 1,
   "bancoId": 1,
   "saldo": 1000.00,
-  "taxaManutencao": 12.50
 }
 ```
 
@@ -209,6 +208,7 @@ Disciplina: Programação Orientada a Objetos
 ## 📄 Licença
 
 Projeto acadêmico – uso livre para estudo.
+
 
 
 
