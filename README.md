@@ -172,7 +172,7 @@ A API é dividida em três módulos principais:
 
 ## 🛠️ Tecnologias Utilizadas
 
-Java 17+
+Java 21
 
 Spring Boot
 
@@ -208,6 +208,7 @@ Disciplina: Programação Orientada a Objetos
 ## 📄 Licença
 
 Projeto acadêmico – uso livre para estudo.
+
 
 
 
