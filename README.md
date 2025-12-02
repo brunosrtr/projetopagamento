@@ -195,13 +195,14 @@ Bruno Sartori
 
 Patrick Fedrigo
 
-Curso: Desenvolvimento de Sistemas
+## Curso: Desenvolvimento de Sistemas
 
-Disciplina: Programação Orientada a Objetos
+## Disciplina: Programação Orientada a Objetos
 
 ## 📄 Licença
 
 Projeto acadêmico – uso livre para estudo.
+
 
 
 
