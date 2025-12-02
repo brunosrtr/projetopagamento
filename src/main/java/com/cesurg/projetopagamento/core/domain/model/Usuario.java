@@ -2,19 +2,10 @@ package com.cesurg.projetopagamento.core.domain.model;
 
 public class Usuario {
 
-    int contador = 1;
-
     private Long id;
     private String nome;
     private String sobrenome;
     private String cpf;
-
-    public Usuario(String nome, String sobrenome, String cpf) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.cpf = cpf;
-    }
-
 
     public Long getId() {
         return id;
