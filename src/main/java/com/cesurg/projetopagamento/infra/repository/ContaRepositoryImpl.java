@@ -84,6 +84,9 @@ public class ContaRepositoryImpl implements ContaRepository {
             }
         }
 
+        if (contaOrigem instanceof ContaPoupanca && !contaOrigem.getUsuario().getId().equals(contaDestino.getUsuario().getId())) {
+            throw new IllegalArgumentException("Conta Poupança não pode realizar transferencias para outros usuários");
+        }
         if (contaOrigem == null) {
             throw new IllegalArgumentException("Conta de origem não encontrada");
         }
