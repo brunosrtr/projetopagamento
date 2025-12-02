@@ -16,7 +16,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleIllegalArgument(IllegalArgumentException e) {
         Map<String, Object> body = new HashMap<>();
       body.put("erro", e.getMessage());
-      body.put("timestamp", LocalDateTime.now());
       return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
@@ -24,7 +23,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<?> handleGeneric(Exception e) {
       Map<String, Object> body = new HashMap<>();
       body.put("erro", "Erro interno no servidor");
-      body.put("timestamp", LocalDateTime.now());
       return new ResponseEntity<>(body, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
