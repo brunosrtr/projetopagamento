@@ -184,10 +184,6 @@ Maven
 
 Padrões: Clean Architecture
 
-## ▶️ Executando o Projeto
-```
-mvn spring-boot:run
-```
 
 A API rodará em:
 ```
@@ -206,6 +202,7 @@ Disciplina: Programação Orientada a Objetos
 ## 📄 Licença
 
 Projeto acadêmico – uso livre para estudo.
+
 
 
 
