@@ -101,11 +101,11 @@ A API é dividida em três módulos principais:
 
 ## 💼 **3. Endpoints de Conta**
 
-| Método | Rota             | Tipo de Conta  | Body             |
-| ------ | ---------------- | -------------- | ---------------- |
-| POST   | /contas/corrente | Conta Corrente | ContaCorrenteDTO |
-| POST   | /contas/poupanca | Conta Poupança | ContaPoupancaDTO |
-| POST   | /contas/credito  | Conta Crédito  | ContaCreditoDTO  |
+| Método | Rota             | Tipo de Conta  |
+| ------ | ---------------- | -------------- |
+| POST   | /contas/corrente | Conta Corrente |
+| POST   | /contas/poupanca | Conta Poupança |
+| POST   | /contas/credito  | Conta Crédito  |
 
 
 ✔️ Conta Corrente – Exemplo
@@ -208,4 +208,5 @@ Disciplina: Programação Orientada a Objetos
 ## 📄 Licença
 
 Projeto acadêmico – uso livre para estudo.
+
 
