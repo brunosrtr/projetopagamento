@@ -178,13 +178,11 @@ Spring Boot
 
 Spring Web
 
-Spring Data JPA
-
-H2 / PostgreSQL / MySQL
+Dev Tools
 
 Maven
 
-Padrões: Clean Architecture / Ports & Adapters
+Padrões: Clean Architecture
 
 ## ▶️ Executando o Projeto
 ```
@@ -208,6 +206,7 @@ Disciplina: Programação Orientada a Objetos
 ## 📄 Licença
 
 Projeto acadêmico – uso livre para estudo.
+
 
 
 
