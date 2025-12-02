@@ -26,6 +26,7 @@ public class BancoRepositoryImpl implements BancoRepository {
         for (int i = 0; i < bancos .size(); i++) {
             Banco b = bancos.get(i);
             if (Objects.equals(b.getAgencia(), agencia)) {
+                banco.setId(b.getId());
                 banco.setAgencia(b.getAgencia());
                 bancos.set(i, banco);
             }
