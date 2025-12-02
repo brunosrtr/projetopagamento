@@ -51,7 +51,7 @@ src/main/java
                     └── UsuarioRepositoryImpl.java
 ```
 
-🔌 **Documentação Oficial da API**
+## 🔌 **Documentação Oficial da API**
 
 A API é dividida em três módulos principais:
 
@@ -208,3 +208,4 @@ Disciplina: Programação Orientada a Objetos
 ## 📄 Licença
 
 Projeto acadêmico – uso livre para estudo.
+
